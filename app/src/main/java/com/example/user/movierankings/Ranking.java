@@ -13,7 +13,7 @@ public class Ranking {
     }
 
     public Movie getMovieByRank(int ranking){
-        return movies[ranking];
+        return movies[ranking - 1];
     }
 
     public void setMovie(Movie movie){
@@ -32,7 +32,7 @@ public class Ranking {
     public void changeMovieRanking(Movie movie, int change){
         if( (change > 0) && (movie.getRanking() - change > 0) ){
             movie.setRanking(movie.getRanking() - change);
-        } else if ( (change < 0) && (movie.getRanking() + change < 10) ){
+        } else if ( (change < 0) && (movie.getRanking() + change <= 10) ){
             movie.setRanking(movie.getRanking() - change);
         } else {
             // Do nothing.

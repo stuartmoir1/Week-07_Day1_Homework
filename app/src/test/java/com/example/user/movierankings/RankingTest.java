@@ -35,7 +35,7 @@ public class RankingTest {
     public void testAllMoviesInArray() {
         Ranking rankings = new Ranking(movies);
         for (int i = 0; i < 10; i++) {
-            assertEquals(movies[i].toString(), rankings.getMovieByRank(i).toString());
+            assertEquals(movies[i].toString(), rankings.getMovieByRank(i + 1).toString());
         }
     }
 
@@ -47,7 +47,7 @@ public class RankingTest {
         Movie newMovie = new Movie("The Lord of the Rings: The Fellowship of the Ring",
                 "Fantasy", rank);
         rankings.setMovie(newMovie);
-        assertEquals(newMovie.toString(), rankings.getMovieByRank(rank - 1).toString());
+        assertEquals(newMovie.toString(), rankings.getMovieByRank(rank).toString());
     }
 
     // Find byt title.
@@ -60,12 +60,14 @@ public class RankingTest {
 
     // Change rank.
 
+    // Increase
+
     @Test
     public void testIncreaseMovieRankingByOneNotTop() {
         Ranking rankings = new Ranking(movies);
         rankings.changeMovieRanking(movie4, 1);
         assertEquals("Title: The Dark Knight, Genre: Action, Ranking: 3",
-                rankings.getMovieByRank(3).toString());
+                rankings.getMovieByRank(4).toString());
     }
 
     @Test
@@ -73,7 +75,7 @@ public class RankingTest {
         Ranking rankings = new Ranking(movies);
         rankings.changeMovieRanking(movie4, 2);
         assertEquals("Title: The Dark Knight, Genre: Action, Ranking: 2",
-                rankings.getMovieByRank(3).toString());
+                rankings.getMovieByRank(4).toString());
     }
 
     @Test
@@ -81,7 +83,7 @@ public class RankingTest {
         Ranking rankings = new Ranking(movies);
         rankings.changeMovieRanking(movie4, 3);
         assertEquals("Title: The Dark Knight, Genre: Action, Ranking: 1",
-                rankings.getMovieByRank(3).toString());
+                rankings.getMovieByRank(4).toString());
     }
 
     // Do nothing if change would put object 'below' index 0.
@@ -89,15 +91,17 @@ public class RankingTest {
     public void testIncreaseMovieRankingExceedTop() {
         Ranking rankings = new Ranking(movies);
         rankings.changeMovieRanking(movie4, 4);
-        assertEquals(movie4.toString(), rankings.getMovieByRank(3).toString());
+        assertEquals(movie4.toString(), rankings.getMovieByRank(4).toString());
     }
+
+    // Decrease
 
     @Test
     public void testDecreaseMovieRankingByOneNotBottom() {
         Ranking rankings = new Ranking(movies);
         rankings.changeMovieRanking(movie7, -1);
         assertEquals("Title: Pulp Fiction, Genre: Drama, Ranking: 8",
-                rankings.getMovieByRank(6).toString());
+                rankings.getMovieByRank(7).toString());
     }
 
     @Test
@@ -105,7 +109,7 @@ public class RankingTest {
         Ranking rankings = new Ranking(movies);
         rankings.changeMovieRanking(movie7, -2);
         assertEquals("Title: Pulp Fiction, Genre: Drama, Ranking: 9",
-                rankings.getMovieByRank(6).toString());
+                rankings.getMovieByRank(7).toString());
     }
 
     @Test
@@ -113,7 +117,7 @@ public class RankingTest {
         Ranking rankings = new Ranking(movies);
         rankings.changeMovieRanking(movie7, -3);
         assertEquals("Title: Pulp Fiction, Genre: Drama, Ranking: 10",
-                rankings.getMovieByRank(6).toString());
+                rankings.getMovieByRank(7).toString());
 
     }
 
@@ -122,6 +126,6 @@ public class RankingTest {
     public void testDecreaseMovieRankingByExceedBottom() {
         Ranking rankings = new Ranking(movies);
         rankings.changeMovieRanking(movie7, -4);
-        assertEquals(movie7.toString(), rankings.getMovieByRank(6).toString());
+        assertEquals(movie7.toString(), rankings.getMovieByRank(7).toString());
     }
 }
