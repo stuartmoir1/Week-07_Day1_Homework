@@ -38,4 +38,20 @@ public class Ranking {
             // Do nothing.
         }
     }
+
+    public void sortMoviesByRanking(Movie[] movies) {
+        boolean sorted = false;
+        Movie temp; // Temporary variable for swapping elements in array.
+        while (sorted == false){
+            sorted = true;
+            for (int i = 0; i < 9; i++) {
+                if (movies[i].getRanking() > movies[i + 1].getRanking()){
+                    temp = movies[i];
+                    movies[i] = movies[i + 1];
+                    movies[i + 1] = temp;
+                    sorted = false;
+                }
+            }
+        }
+    }
 }

@@ -50,7 +50,7 @@ public class RankingTest {
         assertEquals(newMovie.toString(), rankings.getMovieByRank(rank).toString());
     }
 
-    // Find byt title.
+    // Find by title.
     @Test
     public void testFindMovieByTitle() {
         Ranking rankings = new Ranking(movies);
@@ -127,5 +127,16 @@ public class RankingTest {
         Ranking rankings = new Ranking(movies);
         rankings.changeMovieRanking(movie7, -4);
         assertEquals(movie7.toString(), rankings.getMovieByRank(7).toString());
+    }
+
+    @Test
+    public void testSortMoviesInArray(){
+        Movie[] mixedUpMovies = new Movie[]{movie3, movie7, movie9, movie4, movie6, movie10,
+                movie1, movie5, movie2, movie8};
+        Ranking rankings = new Ranking(mixedUpMovies);
+        rankings.sortMoviesByRanking(mixedUpMovies);
+        for (int i = 0; i < 10; i++) {
+            assertEquals(movies[i].toString(), rankings.getMovieByRank(i + 1).toString());
+        }
     }
 }
